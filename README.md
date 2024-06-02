@@ -13,7 +13,7 @@ Aplikasi Web untuk monitoring kendaraan serta bila ingin menggunakan kendaraan, 
 ## **How to Usage** <a name="usage"></a>
 1. Clone the repository
 
-    ```git clone ```
+    ```git clone https://github.com/AgungA1/NickelTransport-Monitor.git```
 
 
 2. Switch to the repo folder
