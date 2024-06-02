@@ -41,7 +41,7 @@
                                         <form action="{{ route('order.completed', $order->id) }}" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-sm btn-success shadow-sm"
-                                                {{ $order->status != 'approved2' ? 'disabled' : '' }}>Selesai</button>
+                                                {{ $order->status != 'approved2' ? 'disabled' : '' }}>Completed</button>
                                         </form>
                                     </div>
                                 </div>
