@@ -84,3 +84,8 @@ Aplikasi Web untuk monitoring kendaraan serta bila ingin menggunakan kendaraan, 
 ## Framework Version <a name="framework-version"></a>
 
 * Laravel 10.0
+
+## Related Project <a name="related-project"></a>
+
+* [Physical Data Model](public/physical-data-model/pdm.md)
+* [Activity Diagram](public/activity-diagram/activity-diagram.md)
