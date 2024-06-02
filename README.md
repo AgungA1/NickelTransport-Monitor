@@ -10,7 +10,7 @@ Aplikasi Web untuk monitoring kendaraan serta bila ingin menggunakan kendaraan, 
 * Export report order periodic dalam bentuk Excel
 * Log Activity untuk setiap proses yang dilakukan (Hanya Admin)
 
-## ** How to Usage** <a name="usage"></a>
+## **How to Usage** <a name="usage"></a>
 1. Clone the repository
 
     ```git clone ```
