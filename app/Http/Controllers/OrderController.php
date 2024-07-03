@@ -20,6 +20,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with(['driver', 'vehicle'])->get();
+        $orders = Order::orderBy('created_at', 'desc')->get();
         return view('order', compact('orders'));
     }
 
@@ -68,7 +69,7 @@ class OrderController extends Controller
 
         $log = new LogActivity([
             'user' => Auth::user()->name,
-            'activity' => 'Admin Create Order'. $vehicle->vehicle_name . ' with ' . $driver->driver_name . ' on ' . $order->order_date . ' until ' . $order->end_date . ' with status ' . $order->status,
+            'activity' => 'Admin Create Order '. $vehicle->vehicle_name . ' with ' . $driver->driver_name . ' on ' . $order->order_date . ' until ' . $order->end_date . ' with status ' . $order->status,
         ]);
 
         $order->save();
@@ -83,17 +84,19 @@ class OrderController extends Controller
         $vehicle = Vehicle::find($order->vehicle_id);
         $driver = Driver::find($order->driver_id);
 
-        if (Auth::user()->role == 'approver1' && $order->status == 'pending') {
+        if (Auth::user()->role == 'approver1') {
             $order->status = 'approved1';
             $log = new LogActivity([
                 'user' => Auth::user()->name,
-                'activity' => 'Approver1 Approve Order'. $vehicle->vehicle_name . ' with ' . $driver->driver_name . ' on ' . $order->order_date . ' until ' . $order->end_date . ' with status ' . $order->status,
+                'activity' => 'Approver1 Approve Order '. $vehicle->vehicle_name . ' with ' . $driver->driver_name . ' on ' . $order->order_date . ' until ' . $order->end_date . ' with status ' . $order->status,
             ]);
+            $log->save();
+            $order->save();
         } else if (Auth::user()->role == 'approver2' && $order->status == 'approved1') {
             $order->status = 'approved2';
             $log = new LogActivity([
                 'user' => Auth::user()->name,
-                'activity' => 'Approver2 Approve Order'. $vehicle->vehicle_name . ' with ' . $driver->driver_name . ' on ' . $order->order_date . ' until ' . $order->end_date . ' with status ' . $order->status,
+                'activity' => 'Approver2 Approve Order '. $vehicle->vehicle_name . ' with ' . $driver->driver_name . ' on ' . $order->order_date . ' until ' . $order->end_date . ' with status ' . $order->status,
             ]);
             $log->save();
             $order->save();
@@ -111,13 +114,15 @@ class OrderController extends Controller
             $order->status = 'rejected';
             $log = new LogActivity([
                 'user' => Auth::user()->name,
-                'activity' => 'Approver1 Reject Order'. $vehicle->vehicle_name . ' with ' . $driver->driver_name . ' on ' . $order->order_date . ' until ' . $order->end_date . ' with status ' . $order->status,
+                'activity' => 'Approver1 Reject Order '. $vehicle->vehicle_name . ' with ' . $driver->driver_name . ' on ' . $order->order_date . ' until ' . $order->end_date . ' with status ' . $order->status,
             ]);
+            $log->save();
+            $order->save();
         } else if (Auth::user()->role == 'approver2' && $order->status == 'approved1') {
             $order->status = 'rejected';
             $log = new LogActivity([
                 'user' => Auth::user()->name,
-                'activity' => 'Approver2 Reject Order'. $vehicle->vehicle_name . ' with ' . $driver->driver_name . ' on ' . $order->order_date . ' until ' . $order->end_date . ' with status ' . $order->status,
+                'activity' => 'Approver2 Reject Order '. $vehicle->vehicle_name . ' with ' . $driver->driver_name . ' on ' . $order->order_date . ' until ' . $order->end_date . ' with status ' . $order->status,
             ]);
             $log->save();
             $order->save();
@@ -134,7 +139,7 @@ class OrderController extends Controller
         $order->status = 'completed';
         $log = new LogActivity([
             'user' => Auth::user()->name,
-            'activity' => 'Admin has completed order'. $vehicle->vehicle_name . ' with ' . $driver->driver_name . ' on ' . $order->order_date . ' until ' . $order->end_date . ' with status ' . $order->status,
+            'activity' => 'Admin has Completed Order '. $vehicle->vehicle_name . ' with ' . $driver->driver_name . ' on ' . $order->order_date . ' until ' . $order->end_date . ' with status ' . $order->status,
         ]);
         $log->save();
         $order->push();
@@ -145,13 +150,14 @@ class OrderController extends Controller
     public function export()
     {
         $date = date('Y-m-d'); // Get the current date
-        $filename = 'Nickel-Vehicles-Monitor-Report-' . $date . '.xlsx'; // Append the date to the filename
+        $filename = 'Nickel-Vehicles-Monitor-Report-' . $date . '.xlsx';
         return Excel::download(new OrderExport, $filename);
     }
 
     public function showLogActivity()
     {
         $logs = LogActivity::all();
+        $logs = LogActivity::orderBy('updated_at', 'desc')->get();
         return view('log-activity', compact('logs'));
     }
 

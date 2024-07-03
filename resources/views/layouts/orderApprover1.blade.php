@@ -31,13 +31,13 @@
                                     <div class="col-6 d-inline-block">
                                         <form action="{{ route('order.approve', $order->id) }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-success shadow-sm" {{ ($order->status != 'approved1' && Auth::user()->role == 'approver2') || $order->status == 'approved2' || $order->status == 'done' ? 'disabled' : '' }}>Approve</button>
+                                            <button type="submit" class="btn btn-sm btn-success shadow-sm" {{ ($order->status != 'approved1' && Auth::user()->role == 'approver2') || $order->status == 'approved2' || $order->status == 'completed' || $order->status == 'rejected' ? 'disabled' : '' }}>Approve</button>
                                         </form>
                                     </div>
                                     <div class="col-6 d-inline-block">
                                         <form action="{{ route('order.reject', $order->id) }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-danger shadow-sm" {{ ($order->status != 'approved1' && Auth::user()->role == 'approver2') || $order->status == 'approved2' || $order->status == 'done' ? 'disabled' : '' }}>Reject</button>
+                                            <button type="submit" class="btn btn-sm btn-danger shadow-sm" {{ ($order->status != 'approved1' && Auth::user()->role == 'approver2') || $order->status == 'approved2' || $order->status == 'completed' || $order->status == 'rejected' ? 'disabled' : '' }}>Reject</button>
                                         </form>
                                     </div>
                                 </div>

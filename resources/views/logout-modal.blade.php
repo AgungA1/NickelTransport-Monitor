@@ -13,7 +13,7 @@ aria-hidden="true">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-primary">Logout</button>
+                <button type="submit" class="btn btn-success">Logout</button>
             </form>
         </div>
     </div>
