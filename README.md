@@ -1,8 +1,8 @@
-## About The Project<a name = "about"></a>
+## About The Project
 
 Aplikasi Web untuk monitoring kendaraan serta bila ingin menggunakan kendaraan, diwajibkan untuk melakukan order serta harus disetujui kepada masing masing pengelola.
 
-## **Feature** <a name = "fitur"></a>
+## **Feature** 
 * Login
 * Monitoring Grafik Pemakaian Kendaraan
 * Pemesanan Kendaraan
@@ -10,7 +10,7 @@ Aplikasi Web untuk monitoring kendaraan serta bila ingin menggunakan kendaraan, 
 * Export report order periodic dalam bentuk Excel
 * Log Activity untuk setiap proses yang dilakukan (Hanya Admin)
 
-## **How to Usage** <a name="usage"></a>
+## **How to Usage** 
 1. Clone the repository
 
     ```git clone https://github.com/AgungA1/NickelTransport-Monitor.git```
@@ -47,7 +47,7 @@ Aplikasi Web untuk monitoring kendaraan serta bila ingin menggunakan kendaraan, 
 
 <br>
 
-## **Username & Password** <a name = "tampilan"></a>
+## **Username & Password**
 
 
 
@@ -73,7 +73,7 @@ Aplikasi Web untuk monitoring kendaraan serta bila ingin menggunakan kendaraan, 
 <br>
 
 
-## Database Version <a name="database-version"></a>
+## Database Version 
 
 * MySQL 5.2.1
 
@@ -81,11 +81,11 @@ Aplikasi Web untuk monitoring kendaraan serta bila ingin menggunakan kendaraan, 
 
 * PHP 8.2
 
-## Framework Version <a name="framework-version"></a>
+## Framework Version 
 
 * Laravel 10.0
 
-## Related Project <a name="related-project"></a>
+## Physical Data Model & Activity Diagram 
 
 * [Physical Data Model](public/physical-data-model/pdm.md)
 * [Activity Diagram](public/activity-diagram/activity-diagram.md)
